@@ -1,0 +1,77 @@
+body{
+    background-color: #202020;
+}
+
+#div-pai{
+    width: 90%;
+}
+
+@media(max-width: 1200px) {
+    /* css div individuais lanches */
+    #cheese-burger, #delicious-bacon, #cheddar-volcano { 
+        width: 72%; 
+        height: 12.5%; 
+        left:17%;
+    }
+
+    #cheese-burger{
+        top:53%;
+    }
+
+    #delicious-bacon{
+        top:69%;
+    }
+
+    #cheddar-volcano{
+        top:84.5%;
+    }
+
+    /* css icones redes sociais */
+    #logo-facebook, #logo-instagram{
+        width: 8.5%; 
+        height: 5%;
+        left: 4%;
+    }
+
+    #logo-facebook{
+        top: 91.5%;
+    }
+
+    #logo-instagram{
+        top: 84%;
+    }
+}
+@media(min-width: 1201px) {
+    #cheese-burger, #delicious-bacon, #cheddar-volcano { 
+        width: 63%; 
+        height: 12.5%; 
+        left:22%;
+    }
+
+    #cheese-burger{
+        top:53%;
+    }
+
+    #delicious-bacon{
+        top:69%;
+    }
+
+    #cheddar-volcano{
+        top:84.5%;
+    }
+
+    /* css icones redes sociais */
+    #logo-facebook, #logo-instagram{
+        width: 8%; 
+        height: 5%;
+        left: 9%;
+    }
+
+    #logo-facebook{
+        top: 91.5%;
+    }
+
+    #logo-instagram{
+        top: 84%;
+    }
+}
