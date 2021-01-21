@@ -20,6 +20,9 @@ var Model;
         get valorTotal() {
             return this._valorTotal;
         }
+        get observacoes() {
+            return this._observacoes;
+        }
         set valorTotalAdicional(valor) {
             this._valorTotalAdicional = valor;
         }
@@ -42,6 +45,9 @@ var Model;
                     indice = index;
             });
             this._adicionais.splice(indice, 1);
+        }
+        obterIdAdicionais() {
+            return this._adicionais;
         }
     }
     Model.ProdutoSelecionado = ProdutoSelecionado;

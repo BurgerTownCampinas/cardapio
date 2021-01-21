@@ -1,7 +1,7 @@
 namespace ModalFooter{
     export class ModalFooter{
 
-        view(logica: Modal.Produto.ModalProdutoLogica): string{
+        view(logica: Modal.Produto.ModalProdutoLogica, textoBotao: string, idBotao: string): string{
             let quantidade = 1;
             return`
                 <div class="modal-footer 
@@ -28,13 +28,13 @@ namespace ModalFooter{
                         </button>
                     </div>
                 <div>
-                <button id="total" 
+                <button id="${idBotao}" 
                     type="button" 
                     class="btn btn-danger 
                     padding-customizado-modal-produto
                     background-color-vermelho-customizada"
                     data-dismiss="modal">
-                        Adicionar R$ 
+                        ${textoBotao} R$ 
                         ${Helpers.Commum.numeroParaString(logica.somarTotalProdutos())}
                 </button>
             </div>

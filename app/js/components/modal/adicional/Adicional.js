@@ -3,22 +3,28 @@ var Modal;
     var Adicional;
     (function (Adicional_1) {
         class Adicional {
-            view(adicionais) {
+            view(produtoSelecionado) {
                 return `
                 <label><strong>Adicionais</strong></label> 
-                ${adicionais.map(adicional => `<div class="form-check">
-                        <input value=${adicional.valor}
-                            class="adicional
-                            form-check-input" 
-                            type="checkbox" />                            
-                        <label class="form-check-label">
-                            ${adicional.descricao} 
-                            <strong>
-                                R$ ${Helpers.Commum.numeroParaString(adicional.valor)}
-                            </strong>
-                        </label>
-                        <input class="adicional-id" type="hidden" value="${adicional.id}" />
-                    </div>`).join('')}`;
+                ${produtoSelecionado.produto.adicionais.map(adicional => {
+                    let checked = '';
+                    if (produtoSelecionado.obterIdAdicionais().some(ad => ad.id == adicional.id))
+                        checked = 'checked';
+                    return `<div class="form-check">
+                                <input value=${adicional.valor}
+                                    class="adicional
+                                    form-check-input"
+                                    type="checkbox" 
+                                    ${checked}/>                            
+                                <label class="form-check-label">
+                                    ${adicional.descricao} 
+                                    <strong>
+                                        R$ ${Helpers.Commum.numeroParaString(adicional.valor)}
+                                    </strong>
+                                </label>
+                                <input class="adicional-id" type="hidden" value="${adicional.id}" />
+                            </div>`;
+                }).join('')}`;
             }
         }
         Adicional_1.Adicional = Adicional;

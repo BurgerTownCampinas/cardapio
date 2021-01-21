@@ -25,9 +25,9 @@ var Modal;
                             ${this._modalHeader.view()}
                             <form>
                                 <!-- Modal body -->
-                                ${this._modalBody.view(this._produtoSelecionado.produto)}
+                                ${this._modalBody.view(this._produtoSelecionado)}
                                 <!-- Modal footer -->
-                                ${this._modalFooter.view(this._logica)}
+                                ${this._modalFooter.view(this._logica, 'Adicionar', 'total')}
                             </form>
                         </div>
                     </div>`;

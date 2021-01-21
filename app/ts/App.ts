@@ -3,7 +3,8 @@ class App {
     constructor(
         private _listaProdutos: ListaProdutos.ListaProdutos,
         private _modalAdicionaProduto: Modal.Produto.ModalAdicionaProduto,
-        private _pedido: Pedido.ModalPedido
+        private _pedido: Pedido.ModalPedido, 
+        private _modalAtualizaProduto: Modal.Produto.ModalAtualizaProduto
     ) {
         this._listaProdutos = ListaProdutos.ListaProdutos.getInstance();
         this._modalAdicionaProduto = new Modal.Produto.ModalAdicionaProduto();
@@ -15,6 +16,10 @@ class App {
 
     get pedido(): Pedido.ModalPedido{
         return this._pedido;
+    }
+
+    get modalAtualizaProduto(): Modal.Produto.ModalAtualizaProduto {
+        return this._modalAtualizaProduto;
     }
 
     render(): void {
@@ -35,6 +40,10 @@ class App {
                 </div>
 
                 <div class="modal"
+                    id="modal-atualiza">
+                </div>
+
+                <div class="modal"
                     id="modal-pedido">
                 </div>
 
@@ -50,6 +59,7 @@ class App {
 let app = new App(
     ListaProdutos.ListaProdutos.getInstance(),
     new Modal.Produto.ModalAdicionaProduto(),
-    new Pedido.ModalPedido()
+    new Pedido.ModalPedido(), 
+    new Modal.Produto.ModalAtualizaProduto()
 );
 app.render();

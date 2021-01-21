@@ -37,8 +37,8 @@ namespace Pedido{
                             <!-- Modal body -->
                             <form id="form-order">
                                 <div class="modal-body form-control">
-                                    ${this._carrinhoCompras.pedido.obterProdutos().map((produtoSelecionado) =>
-                                            this._item.view(produtoSelecionado)
+                                    ${this._carrinhoCompras.pedido.obterProdutos().map((produtoSelecionado, index) =>
+                                            this._item.view(produtoSelecionado, index)
                                         ).join('')}                       
                                     <div>
                                         <label>Nome completo</label>

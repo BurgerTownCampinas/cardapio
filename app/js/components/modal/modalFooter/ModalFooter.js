@@ -1,7 +1,7 @@
 var ModalFooter;
 (function (ModalFooter_1) {
     class ModalFooter {
-        view(logica) {
+        view(logica, textoBotao, idBotao) {
             let quantidade = 1;
             return `
                 <div class="modal-footer 
@@ -28,13 +28,13 @@ var ModalFooter;
                         </button>
                     </div>
                 <div>
-                <button id="total" 
+                <button id="${idBotao}" 
                     type="button" 
                     class="btn btn-danger 
                     padding-customizado-modal-produto
                     background-color-vermelho-customizada"
                     data-dismiss="modal">
-                        Adicionar R$ 
+                        ${textoBotao} R$ 
                         ${Helpers.Commum.numeroParaString(logica.somarTotalProdutos())}
                 </button>
             </div>

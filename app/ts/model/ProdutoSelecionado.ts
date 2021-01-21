@@ -26,6 +26,10 @@ namespace Model{
             return this._valorTotal;
         }
 
+        get observacoes(): string{
+            return this._observacoes;
+        }
+
         set valorTotalAdicional(valor: number){
             this._valorTotalAdicional = valor;
         }
@@ -55,6 +59,10 @@ namespace Model{
             });
 
             this._adicionais.splice(indice, 1);
+        }
+
+        obterIdAdicionais(): any[]{
+            return this._adicionais;
         }
     }
 }
