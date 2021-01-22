@@ -1,13 +1,12 @@
 namespace ModalFooter{
     export class ModalFooter{
 
-        view(logica: Modal.Produto.ModalProdutoLogica, textoBotao: string, idBotao: string): string{
-            let quantidade = 1;
+        view(logica: any, idIncremento: string, idDecremento: string, idQuantidade: string, textoBotao: string, idBotao: string, quantidade: number): string{
             return`
                 <div class="modal-footer 
                     justify-content-center">
                     <div>
-                        <button id="decremento"
+                        <button id="${idDecremento}"
                             type="button" 
                             class="btn btn-light 
                             text-color-vermelho-customizada 
@@ -15,11 +14,11 @@ namespace ModalFooter{
                              - 
                         </button>
                         <p class="btn">
-                            <strong id="quantidade">
+                            <strong id="${idQuantidade}">
                                 ${quantidade}
                             </strong>
                         </p>                                 
-                        <button id="incremento" 
+                        <button id="${idIncremento}" 
                             type="button" 
                             class="btn btn-light 
                             text-color-vermelho-customizada 

@@ -6,12 +6,12 @@ var ModalBody;
             this._adicional = new Modal.Adicional.Adicional();
             this._card = new Card.Card();
         }
-        view(produtoSelecionado) {
+        view(produtoSelecionado, classAdicional, idTextArea) {
             let retorno = '';
-            console.log(produtoSelecionado);
-            let placeholderObservacao = produtoSelecionado.observacoes === undefined
+            let textoTextAera = produtoSelecionado.observacoes;
+            let placeholderObservacao = textoTextAera === '' || textoTextAera === undefined
                 ? 'Ex: Tirar cebola.'
-                : produtoSelecionado.observacoes;
+                : '';
             retorno += `<div class="modal-body form-control">
                             <div class="d-flex">
                                 ${this._card.view(produtoSelecionado.produto)}
@@ -19,12 +19,12 @@ var ModalBody;
                             </br>`;
             if (produtoSelecionado.produto.idCategoria == 1) // renderiza adiconais apenas para lanches 
                 retorno += `<div>
-                                ${this._adicional.view(produtoSelecionado)}
+                                ${this._adicional.view(produtoSelecionado, classAdicional)}
                             </div>
                             </br>`;
             if (produtoSelecionado.produto.idCategoria != 2) // não renderiza obserções caso seja bebida
                 retorno += `<div>
-                                ${this._textArea.view('Alguma observação?', 'textarea', '3', placeholderObservacao)}
+                                ${this._textArea.view('Alguma observação?', idTextArea, '3', placeholderObservacao, textoTextAera)}
                             </div>`;
             retorno += `</div>`;
             return retorno;

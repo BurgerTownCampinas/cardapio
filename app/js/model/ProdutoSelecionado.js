@@ -46,6 +46,9 @@ var Model;
             });
             this._adicionais.splice(indice, 1);
         }
+        adicionarIdAdicionaisPorRange(obj) {
+            this._adicionais = obj;
+        }
         obterIdAdicionais() {
             return this._adicionais;
         }

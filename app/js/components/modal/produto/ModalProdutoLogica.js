@@ -19,8 +19,10 @@ var Modal;
                     (this._produtoSelecionado.produto.valor + this._produtoSelecionado.valorTotalAdicional) * this._produtoSelecionado.quantidade;
             }
             handlerAdicional() {
-                document
-                    .querySelectorAll('.adicional')
+                let elemento = document.querySelectorAll('.adicional');
+                if (elemento === undefined || elemento === null)
+                    return;
+                elemento
                     .forEach(elemento => elemento.addEventListener('click', () => {
                     let input = elemento;
                     let elementoPai = elemento.parentNode;
@@ -33,22 +35,21 @@ var Modal;
                         this._produtoSelecionado.valorTotalAdicional -= parseFloat(input.value);
                         this._produtoSelecionado.removerIdAdicionais(parseInt(inputHidden.value));
                     }
-                    console.log(this._produtoSelecionado);
                     this._renderizaTotal();
                 }));
             }
             adicionarProduto() {
-                document
-                    .querySelector('#total')
+                document.querySelector('#total')
                     .addEventListener('click', () => {
                     this._carrinhoComprasModel.pedido.adicionarProdutos(this._produtoSelecionado);
-                    console.log(this._carrinhoComprasModel.pedido);
                     this._carrinhoCompras.carregarCarrinho();
                 });
             }
             obterObservacoes() {
-                document
-                    .querySelector('#textarea')
+                let elemento = document.querySelector('#textarea');
+                if (elemento === undefined || elemento === null)
+                    return;
+                elemento
                     .addEventListener('blur', (event) => {
                     let input = event.target;
                     this._produtoSelecionado.observacoes = input.value;

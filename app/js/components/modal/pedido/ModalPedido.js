@@ -69,9 +69,9 @@ var Pedido;
                                     </div>
                                     </br>
                                     <div class="text-right">
-                                        <p>Valor pedido <strong>R$ ${this._logica.somarTotalPedido()}</strong></p>
-                                        <p>Taxa de entrega <strong>R$ ${this._carrinhoCompras.pedido.taxaServico}</strong></p>
-                                        <p><strong>Total R$ ${this._logica.somarTotal()}</strong></p>
+                                        <p>Valor pedido <strong>R$ ${Helpers.Commum.numeroParaString(this._logica.somarTotalPedido())}</strong></p>
+                                        <p>Taxa de entrega <strong>R$ ${Helpers.Commum.numeroParaString(this._carrinhoCompras.pedido.taxaServico)}</strong></p>
+                                        <p><strong>Total R$ ${Helpers.Commum.numeroParaString(this._logica.somarTotal())}</strong></p>
                                     </div>
                                     <!--Modal footer-->
                                     <div class="modal-footer justify-content-center">

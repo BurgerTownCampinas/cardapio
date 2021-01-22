@@ -22,8 +22,11 @@ namespace Modal.Produto {
         }
 
         handlerAdicional(): void {
-            document
-                .querySelectorAll('.adicional')
+            let elemento = document.querySelectorAll('.adicional');
+            if(elemento === undefined || elemento === null)
+                return;
+
+            elemento
                 .forEach(elemento =>
                     elemento.addEventListener('click', () => {
                         let input = <HTMLInputElement>elemento;
@@ -38,27 +41,26 @@ namespace Modal.Produto {
                             this._produtoSelecionado.valorTotalAdicional -= parseFloat(input.value);
                             this._produtoSelecionado.removerIdAdicionais(parseInt(inputHidden.value));
                         }
-
-                        console.log(this._produtoSelecionado);
-
+                        
                         this._renderizaTotal();
                     })
                 );
         }
 
         adicionarProduto(): void{
-            document
-                .querySelector('#total')
+            document.querySelector('#total')
                 .addEventListener('click', () =>{
                     this._carrinhoComprasModel.pedido.adicionarProdutos(this._produtoSelecionado); 
-                    console.log(this._carrinhoComprasModel.pedido);
                     this._carrinhoCompras.carregarCarrinho();                   
                 });            
         }
 
         obterObservacoes(): void{
-            document    
-                .querySelector('#textarea')
+            let elemento = document.querySelector('#textarea');
+            if(elemento === undefined || elemento === null)
+                return;
+
+            elemento
                 .addEventListener('blur', (event) => {
                     let input = <HTMLInputElement>event.target;
                                        

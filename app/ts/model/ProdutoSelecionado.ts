@@ -61,6 +61,10 @@ namespace Model{
             this._adicionais.splice(indice, 1);
         }
 
+        adicionarIdAdicionaisPorRange(obj: any[]): void{
+            this._adicionais = obj;
+        }
+
         obterIdAdicionais(): any[]{
             return this._adicionais;
         }

@@ -1,13 +1,12 @@
 var ModalFooter;
 (function (ModalFooter_1) {
     class ModalFooter {
-        view(logica, textoBotao, idBotao) {
-            let quantidade = 1;
+        view(logica, idIncremento, idDecremento, idQuantidade, textoBotao, idBotao, quantidade) {
             return `
                 <div class="modal-footer 
                     justify-content-center">
                     <div>
-                        <button id="decremento"
+                        <button id="${idDecremento}"
                             type="button" 
                             class="btn btn-light 
                             text-color-vermelho-customizada 
@@ -15,11 +14,11 @@ var ModalFooter;
                              - 
                         </button>
                         <p class="btn">
-                            <strong id="quantidade">
+                            <strong id="${idQuantidade}">
                                 ${quantidade}
                             </strong>
                         </p>                                 
-                        <button id="incremento" 
+                        <button id="${idIncremento}" 
                             type="button" 
                             class="btn btn-light 
                             text-color-vermelho-customizada 

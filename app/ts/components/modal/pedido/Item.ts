@@ -1,11 +1,16 @@
 namespace Pedido {
     export class Item {
         view(produto: Model.ProdutoSelecionado, index: number): string {
+            let observacoes = produto.observacoes === '' || produto.observacoes === undefined
+                              ? 'Sem observação'
+                              : produto.observacoes;
+
+
             return `<div class="d-flex" >
                         <div class="flex-fill width-80">
                             <p><strong>${produto.produto.nome}</strong></p>
-                            <p>Observações: ${produto.produto.descricao}</p>
-                            <p>Quantidade ${produto.quantidade} - R$ ${produto.valorTotal}</p>
+                            <p>Observações: ${observacoes}</p>
+                            <p>Quantidade ${produto.quantidade} - R$ ${Helpers.Commum.numeroParaString(produto.valorTotal)}</p>
                         </div>
                         <div class="flex-fill width-20">
                             <button type="button"

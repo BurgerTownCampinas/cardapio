@@ -1,12 +1,12 @@
 var TextArea;
 (function (TextArea_1) {
     class TextArea {
-        view(label, id, rows, placeholder) {
+        view(label, id, rows, placeholder, textoTextAera = '') {
             return `<label>${label}</label>
                         <textarea id="${id}"
                             class="form-control" 
                             rows="${rows}" 
-                            placeholder="${placeholder}"></textarea>
+                            placeholder="${placeholder}">${textoTextAera}</textarea>
             `;
         }
     }

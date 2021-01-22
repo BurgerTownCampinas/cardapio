@@ -3,7 +3,7 @@ var Modal;
     var Adicional;
     (function (Adicional_1) {
         class Adicional {
-            view(produtoSelecionado) {
+            view(produtoSelecionado, classAdicional) {
                 return `
                 <label><strong>Adicionais</strong></label> 
                 ${produtoSelecionado.produto.adicionais.map(adicional => {
@@ -12,7 +12,7 @@ var Modal;
                         checked = 'checked';
                     return `<div class="form-check">
                                 <input value=${adicional.valor}
-                                    class="adicional
+                                    class="${classAdicional}
                                     form-check-input"
                                     type="checkbox" 
                                     ${checked}/>                            

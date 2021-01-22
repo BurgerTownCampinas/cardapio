@@ -1,7 +1,7 @@
 namespace Modal.Adicional{
     export class Adicional{
     
-        view(produtoSelecionado: Model.ProdutoSelecionado): string{
+        view(produtoSelecionado: Model.ProdutoSelecionado, classAdicional: string): string{
             return`
                 <label><strong>Adicionais</strong></label> 
                 ${produtoSelecionado.produto.adicionais.map(adicional =>{
@@ -12,7 +12,7 @@ namespace Modal.Adicional{
                     
                     return`<div class="form-check">
                                 <input value=${adicional.valor}
-                                    class="adicional
+                                    class="${classAdicional}
                                     form-check-input"
                                     type="checkbox" 
                                     ${checked}/>                            
