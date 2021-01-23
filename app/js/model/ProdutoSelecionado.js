@@ -23,6 +23,9 @@ var Model;
         get observacoes() {
             return this._observacoes;
         }
+        get id() {
+            return this._id;
+        }
         set valorTotalAdicional(valor) {
             this._valorTotalAdicional = valor;
         }
@@ -35,10 +38,13 @@ var Model;
         set observacoes(observacoes) {
             this._observacoes = observacoes;
         }
-        adicionarIdAdicionais(id) {
-            this._adicionais.push({ id: id });
+        set id(id) {
+            this._id = id;
         }
-        removerIdAdicionais(id) {
+        adicionarAdicionais(obj) {
+            this._adicionais.push(obj);
+        }
+        removerAdicionais(id) {
             let indice;
             this._adicionais.forEach((ad, index) => {
                 if (ad.id == id)
@@ -46,10 +52,10 @@ var Model;
             });
             this._adicionais.splice(indice, 1);
         }
-        adicionarIdAdicionaisPorRange(obj) {
+        adicionarAdicionaisPorRange(obj) {
             this._adicionais = obj;
         }
-        obterIdAdicionais() {
+        obterAdicionais() {
             return this._adicionais;
         }
     }

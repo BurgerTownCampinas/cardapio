@@ -3,8 +3,9 @@ namespace Model{
         private _valorTotal = 0;
         private _valorTotalAdicional = 0;
         private _quantidade = 1;
-        private _adicionais: {id: number}[];
+        private _adicionais: {id: number, nome: string}[];
         private _observacoes: string;
+        private _id: number;
 
         constructor(private _produto: Produto){
             this._adicionais = new Array<any>();
@@ -30,6 +31,10 @@ namespace Model{
             return this._observacoes;
         }
 
+        get id(): number{
+            return this._id;
+        }
+
         set valorTotalAdicional(valor: number){
             this._valorTotalAdicional = valor;
         }
@@ -45,12 +50,16 @@ namespace Model{
         set observacoes(observacoes: string){
             this._observacoes = observacoes;
         }
+
+        set id(id: number){
+            this._id = id;
+        }
         
-        adicionarIdAdicionais(id: any): void{
-            this._adicionais.push({id: id});
+        adicionarAdicionais(obj: any): void{
+            this._adicionais.push(obj);
         }
 
-        removerIdAdicionais(id: number):void {
+        removerAdicionais(id: number):void {
             let indice: number;
             
             this._adicionais.forEach((ad, index) => {
@@ -61,11 +70,11 @@ namespace Model{
             this._adicionais.splice(indice, 1);
         }
 
-        adicionarIdAdicionaisPorRange(obj: any[]): void{
+        adicionarAdicionaisPorRange(obj: any[]): void{
             this._adicionais = obj;
         }
 
-        obterIdAdicionais(): any[]{
+        obterAdicionais(): any[]{
             return this._adicionais;
         }
     }

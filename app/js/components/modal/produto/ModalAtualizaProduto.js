@@ -28,6 +28,7 @@ var Modal;
                 this._logica.handlerAdicional();
                 this._logica.obterObservacoes();
                 this._logica.adtualizarProduto();
+                this._logica.excluirProduto();
             }
             _view() {
                 return `<div class="modal-dialog">
@@ -38,6 +39,13 @@ var Modal;
                                 ${this._modalBody.view(this._produtoSelecionado, 'adicional-atualiza', 'textarea-adicional')}
                                 <!-- Modal footer -->
                                 ${this._modalFooter.view(this._logica, 'incremento-atualiza', 'decremento-atualiza', 'quantidade-atualiza', 'Atualizar', 'total-atualiza', this._produtoSelecionado.quantidade)}
+                                <button id="excluir"
+                                    style="width:100%" 
+                                    type="button" 
+                                    class="btn btn-secondary 
+                                    padding-customizado-modal-produto 
+                                    text-color-branco-customizado"
+                                    data-dismiss="modal">Excluir</button>
                             </form>
                         </div>
                     </div>`;

@@ -27,13 +27,15 @@ var Modal;
                     let input = elemento;
                     let elementoPai = elemento.parentNode;
                     let inputHidden = elementoPai.querySelector('.adicional-id');
+                    let nome = elementoPai.querySelector('label');
                     if (input.checked) {
+                        let adicional = this._produtoSelecionado.produto.adicionais.filter(ad => ad.id === parseInt(inputHidden.value));
                         this._produtoSelecionado.valorTotalAdicional += parseFloat(input.value);
-                        this._produtoSelecionado.adicionarIdAdicionais(parseInt(inputHidden.value));
+                        this._produtoSelecionado.adicionarAdicionais({ id: parseInt(inputHidden.value), nome: adicional[0].descricao });
                     }
                     else {
                         this._produtoSelecionado.valorTotalAdicional -= parseFloat(input.value);
-                        this._produtoSelecionado.removerIdAdicionais(parseInt(inputHidden.value));
+                        this._produtoSelecionado.removerAdicionais(parseInt(inputHidden.value));
                     }
                     this._renderizaTotal();
                 }));

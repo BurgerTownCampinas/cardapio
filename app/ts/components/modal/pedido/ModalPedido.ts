@@ -6,6 +6,9 @@ namespace Pedido{
         private _item: Item;
         private _textArea: TextArea.TextArea;
         private _radioButton: RadioButton;
+        private _inputDinheiro: InputDinheiro;
+        private _checkCartao: CheckCartao;
+        private : any;
                
         constructor(){
             this._modalHeader = new ModalHeader.ModalHeader();
@@ -14,6 +17,8 @@ namespace Pedido{
             this._item = new Item();
             this._textArea = new TextArea.TextArea();
             this._radioButton = new RadioButton();
+            this._inputDinheiro = new InputDinheiro();
+            this._checkCartao = new CheckCartao(this._radioButton);
         }
 
         carregarPedido(): void{
@@ -23,9 +28,10 @@ namespace Pedido{
 
                 this._logica.obterNome();
                 this._logica.obterEndereco();
-                this._logica.obterTipoPagamento();
+                this._logica.selecionarTipoPagamento();
                 this._logica.obterValorEmDinheiro();
                 this._logica.obterTipoCartao();
+                this._logica.calcularTroco();
                 this._logica.enviarMensagem();
         }
 
@@ -59,24 +65,9 @@ namespace Pedido{
                                             <option value="2">Cartão</option>
                                         </select>
                                         </br>
-                                        <div id="troco">
-                                            <label>Precisa de troco?</label>
-                                            <div class="d-flex">
-                                                <p class="flex-fill width-30">Troco para: R$</p>
-                                                <input id="dinheiro" 
-                                                    type="text" 
-                                                    class="form-control 
-                                                    flex-fill width-70"
-                                                placeholder="Ex: 50,00" 
-                                                onkeypress="$(this).mask('#.###,##', {reverse: true})"
-                                                />
-                                            </div>
-                                            <span class="text-danger"></span>
-                                        </div>
-                                        <div id="card">
-                                            ${this._radioButton.view('0', 'Debito')}
-                                            ${this._radioButton.view('1', 'Credito')}
-                                        </div>
+                                        
+                                        ${this._inputDinheiro.view()}
+                                        ${this._checkCartao.view()}
                                     </div>
                                     </br>
                                     <div class="text-right">

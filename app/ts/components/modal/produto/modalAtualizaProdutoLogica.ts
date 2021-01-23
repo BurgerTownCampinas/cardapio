@@ -7,14 +7,13 @@ namespace Modal.Produto{
         private _observacoesTemp: string;
         private _adicionaisTemp: {id: number}[];
 
-
         constructor(private _produtoSelecionado: Model.ProdutoSelecionado) {
             this._carrinhoCompras = new CarrinhoCompras.CarrinhoCompras();
 
             this._valorTotalTemp = _produtoSelecionado.valorTotal;
             this._quantidadeTemp = _produtoSelecionado.quantidade;
             this._valorTotalAdicionalTemp = _produtoSelecionado.valorTotalAdicional;
-            this._adicionaisTemp = [].concat(_produtoSelecionado.obterIdAdicionais());
+            this._adicionaisTemp = [].concat(_produtoSelecionado.obterAdicionais());
         }
 
         incrementarQuantidade(): void {
@@ -43,12 +42,14 @@ namespace Modal.Produto{
                         let inputHidden = <HTMLInputElement>elementoPai.querySelector('.adicional-id');
 
                         if (input.checked){
+                            let adicional = this._produtoSelecionado.produto.adicionais.filter(ad => ad.id === parseInt(inputHidden.value));
+
                             this._valorTotalAdicionalTemp += parseFloat(input.value);
-                            this._adicionarIdAdicionais(parseInt(inputHidden.value));
+                            this._adicionarAdicionais({id: parseInt(inputHidden.value), nome: adicional[0].descricao});
                         }
                         else{
                             this._valorTotalAdicionalTemp -= parseFloat(input.value);
-                            this._removerIdAdicionais(parseInt(inputHidden.value));
+                            this._removerAdicionais(parseInt(inputHidden.value));
                         }
 
                         this._renderizaTotal();
@@ -76,11 +77,21 @@ namespace Modal.Produto{
                     this._produtoSelecionado.valorTotal = this._valorTotalTemp;
                     this._produtoSelecionado.quantidade = this._quantidadeTemp;
                     this._produtoSelecionado.valorTotalAdicional = this._valorTotalAdicionalTemp;
-                    this._produtoSelecionado.adicionarIdAdicionaisPorRange(this._adicionaisTemp);
+                    this._produtoSelecionado.adicionarAdicionaisPorRange(this._adicionaisTemp);
                     this._produtoSelecionado.observacoes = this._observacoesTemp;
                  
                     this._carrinhoCompras.carregarCarrinho();                   
                 });            
+        }
+
+        excluirProduto(): void{
+            document
+                .querySelector('#excluir')
+                .addEventListener('click', () =>{
+                    Model.CarrinhoCompras.getInstance().pedido.removerProdutos(this._produtoSelecionado.id);
+
+                    this._carrinhoCompras.carregarCarrinho();
+                })
         }
 
         private _atualizaQuantidade(seletor: string, ehIncremento = false): void {
@@ -113,11 +124,11 @@ namespace Modal.Produto{
                 `;
         }
 
-        private _adicionarIdAdicionais(id: any): void{
+        private _adicionarAdicionais(id: any): void{
             this._adicionaisTemp.push({id: id});
         }
 
-        private _removerIdAdicionais(id: number):void {
+        private _removerAdicionais(id: number):void {
             let indice: number;
             
             this._adicionaisTemp.forEach((ad, index) => {

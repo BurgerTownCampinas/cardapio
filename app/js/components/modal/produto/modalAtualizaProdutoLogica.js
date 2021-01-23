@@ -9,7 +9,7 @@ var Modal;
                 this._valorTotalTemp = _produtoSelecionado.valorTotal;
                 this._quantidadeTemp = _produtoSelecionado.quantidade;
                 this._valorTotalAdicionalTemp = _produtoSelecionado.valorTotalAdicional;
-                this._adicionaisTemp = [].concat(_produtoSelecionado.obterIdAdicionais());
+                this._adicionaisTemp = [].concat(_produtoSelecionado.obterAdicionais());
             }
             incrementarQuantidade() {
                 this._atualizaQuantidade('#incremento-atualiza', true);
@@ -31,12 +31,13 @@ var Modal;
                     let elementoPai = elemento.parentNode;
                     let inputHidden = elementoPai.querySelector('.adicional-id');
                     if (input.checked) {
+                        let adicional = this._produtoSelecionado.produto.adicionais.filter(ad => ad.id === parseInt(inputHidden.value));
                         this._valorTotalAdicionalTemp += parseFloat(input.value);
-                        this._adicionarIdAdicionais(parseInt(inputHidden.value));
+                        this._adicionarAdicionais({ id: parseInt(inputHidden.value), nome: adicional[0].descricao });
                     }
                     else {
                         this._valorTotalAdicionalTemp -= parseFloat(input.value);
-                        this._removerIdAdicionais(parseInt(inputHidden.value));
+                        this._removerAdicionais(parseInt(inputHidden.value));
                     }
                     this._renderizaTotal();
                 }));
@@ -58,8 +59,16 @@ var Modal;
                     this._produtoSelecionado.valorTotal = this._valorTotalTemp;
                     this._produtoSelecionado.quantidade = this._quantidadeTemp;
                     this._produtoSelecionado.valorTotalAdicional = this._valorTotalAdicionalTemp;
-                    this._produtoSelecionado.adicionarIdAdicionaisPorRange(this._adicionaisTemp);
+                    this._produtoSelecionado.adicionarAdicionaisPorRange(this._adicionaisTemp);
                     this._produtoSelecionado.observacoes = this._observacoesTemp;
+                    this._carrinhoCompras.carregarCarrinho();
+                });
+            }
+            excluirProduto() {
+                document
+                    .querySelector('#excluir')
+                    .addEventListener('click', () => {
+                    Model.CarrinhoCompras.getInstance().pedido.removerProdutos(this._produtoSelecionado.id);
                     this._carrinhoCompras.carregarCarrinho();
                 });
             }
@@ -88,10 +97,10 @@ var Modal;
                     ${Helpers.Commum.numeroParaString(this.somarTotalProdutos())}
                 `;
             }
-            _adicionarIdAdicionais(id) {
+            _adicionarAdicionais(id) {
                 this._adicionaisTemp.push({ id: id });
             }
-            _removerIdAdicionais(id) {
+            _removerAdicionais(id) {
                 let indice;
                 this._adicionaisTemp.forEach((ad, index) => {
                     if (ad.id == id)

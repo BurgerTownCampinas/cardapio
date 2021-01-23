@@ -2,6 +2,8 @@ var Model;
 (function (Model) {
     class Pedido {
         constructor() {
+            this._tipoPagamento = 0;
+            this._tipoCartao = 0;
             this._taxaServico = 3;
             this._produtosSelecionados = new Array();
         }
@@ -50,10 +52,21 @@ var Model;
         get taxaServico() {
             return this._taxaServico;
         }
+        set valorDoTroco(valor) {
+            this._valorDoTroco = valor;
+        }
+        get valorDoTroco() {
+            return this._valorDoTroco;
+        }
         adicionarProdutos(produtoSelecionado) {
             if (this._produtosSelecionados.some(p => p === produtoSelecionado))
                 return;
             this._produtosSelecionados.push(produtoSelecionado);
+            produtoSelecionado.id = this._produtosSelecionados.length - 1;
+        }
+        removerProdutos(id) {
+            this._produtosSelecionados.splice(id, 1);
+            this._produtosSelecionados.map((produto, index) => produto.id = index);
         }
         obterProdutos() {
             return this._produtosSelecionados;

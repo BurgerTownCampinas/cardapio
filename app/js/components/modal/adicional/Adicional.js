@@ -8,7 +8,7 @@ var Modal;
                 <label><strong>Adicionais</strong></label> 
                 ${produtoSelecionado.produto.adicionais.map(adicional => {
                     let checked = '';
-                    if (produtoSelecionado.obterIdAdicionais().some(ad => ad.id == adicional.id))
+                    if (produtoSelecionado.obterAdicionais().some(ad => ad.id == adicional.id))
                         checked = 'checked';
                     return `<div class="form-check">
                                 <input value=${adicional.valor}

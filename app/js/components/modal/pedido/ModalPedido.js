@@ -8,6 +8,8 @@ var Pedido;
             this._item = new Pedido.Item();
             this._textArea = new TextArea.TextArea();
             this._radioButton = new Pedido.RadioButton();
+            this._inputDinheiro = new Pedido.InputDinheiro();
+            this._checkCartao = new Pedido.CheckCartao(this._radioButton);
         }
         carregarPedido() {
             document
@@ -15,9 +17,10 @@ var Pedido;
                 .innerHTML = this._view();
             this._logica.obterNome();
             this._logica.obterEndereco();
-            this._logica.obterTipoPagamento();
+            this._logica.selecionarTipoPagamento();
             this._logica.obterValorEmDinheiro();
             this._logica.obterTipoCartao();
+            this._logica.calcularTroco();
             this._logica.enviarMensagem();
         }
         _view() {
@@ -48,24 +51,9 @@ var Pedido;
                                             <option value="2">Cartão</option>
                                         </select>
                                         </br>
-                                        <div id="troco">
-                                            <label>Precisa de troco?</label>
-                                            <div class="d-flex">
-                                                <p class="flex-fill width-30">Troco para: R$</p>
-                                                <input id="dinheiro" 
-                                                    type="text" 
-                                                    class="form-control 
-                                                    flex-fill width-70"
-                                                placeholder="Ex: 50,00" 
-                                                onkeypress="$(this).mask('#.###,##', {reverse: true})"
-                                                />
-                                            </div>
-                                            <span class="text-danger"></span>
-                                        </div>
-                                        <div id="card">
-                                            ${this._radioButton.view('0', 'Debito')}
-                                            ${this._radioButton.view('1', 'Credito')}
-                                        </div>
+                                        
+                                        ${this._inputDinheiro.view()}
+                                        ${this._checkCartao.view()}
                                     </div>
                                     </br>
                                     <div class="text-right">

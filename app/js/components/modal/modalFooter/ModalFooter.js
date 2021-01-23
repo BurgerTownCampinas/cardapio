@@ -26,17 +26,18 @@ var ModalFooter;
                                 + 
                         </button>
                     </div>
-                <div>
-                <button id="${idBotao}" 
-                    type="button" 
-                    class="btn btn-danger 
-                    padding-customizado-modal-produto
-                    background-color-vermelho-customizada"
-                    data-dismiss="modal">
-                        ${textoBotao} R$ 
-                        ${Helpers.Commum.numeroParaString(logica.somarTotalProdutos())}
-                </button>
-            </div>
+                    <div>
+                        <button id="${idBotao}" 
+                            type="button" 
+                            class="btn btn-danger 
+                            padding-customizado-modal-produto
+                            background-color-vermelho-customizada"
+                            data-dismiss="modal">
+                                ${textoBotao} R$ 
+                                ${Helpers.Commum.numeroParaString(logica.somarTotalProdutos())}
+                        </button>
+                    </div>
+                </div>
             `;
         }
     }

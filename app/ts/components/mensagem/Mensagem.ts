@@ -10,31 +10,67 @@ namespace Mensagem{
             let fone = '+5519991755210'
             let link = `https://wa.me/${fone}?&text=${this._template()}`;
             
-            //window.open(link, '_blank');
-
-            console.log(link);
+            window.open(link, '_blank');
+            
+            location.reload();
         }
 
         private _template(): string{
+            let tipoCartao = this._carrinhoCompras.pedido.tipoCartao === 0
+            ? 'Debido' : 'Crédito';
+
+            let tipoPagamento = '';
+
+            if(this._carrinhoCompras.pedido.tipoPagamento === 1){
+                if(this._carrinhoCompras.pedido.valorEmDinheiro === NaN || this._carrinhoCompras.pedido.valorDoTroco === undefined){
+                    tipoPagamento = 'Sem necessidade de troco.';
+                }else{
+                tipoPagamento = '*Valor em dinheiro*: R$ ' + Helpers.Commum.numeroParaString(this._carrinhoCompras.pedido.valorEmDinheiro) + '%0A' + 
+                                '*Valor do troco:* R$ '+ Helpers.Commum.numeroParaString(this._carrinhoCompras.pedido.valorDoTroco)
+                }
+
+            }else{
+                tipoPagamento = '*Pagamento em Cartão:* ' + tipoCartao;            
+            }
+
             return  'Ola BurgerTown Gostaria de realizar um pedido.%0A' +
                     '*Lista do pedido*%0A%0A' + 
                     this._carrinhoCompras
                                 .pedido
                                 .obterProdutos()
-                                .map(produto => {
-                                return '*'+produto.produto.nome+ '*%0A' +
-                                    'Observações: Aquiobservações %0A' +
-                                    'Adicionais: Aqui adicionais%0A' +
-                                    'Quantidade ' + produto.quantidade + ' - R$ ' + produto.valorTotal + '%0A%0A'
-                            }).join('') +                    
+                                .map(produtoSelecionado => {
+                                    let observacoes = produtoSelecionado.observacoes === '' || produtoSelecionado.observacoes === undefined
+                                        ? 'Sem observação'
+                                        : produtoSelecionado.observacoes;
+                                
+                                    let adicionais = '';
+                                    adicionais += produtoSelecionado
+                                        .obterAdicionais()
+                                        .map(adicional => adicional.nome)
+                                        .join(' - ');
+
+                                    adicionais = adicionais !== ''? adicionais : 'Sem adicional';  
+
+                                    let observacoesText = '';
+                                    let adicionaisText = '';
+                                    
+                                    if(produtoSelecionado.produto.idCategoria === 1) // renderiza somente para lanches
+                                        adicionaisText += `Adicionais: ${adicionais} %0A`;
+
+                                    if(produtoSelecionado.produto.idCategoria !== 2) // não renderiza quando for bebida
+                                        observacoesText += `Observações: ${observacoes} %0A`;
+
+                                    return '*'+produtoSelecionado.produto.nome+ '*%0A' + 
+                                        observacoesText +
+                                        adicionaisText +
+                                        'Quantidade ' + produtoSelecionado.quantidade + ' - R$ ' + Helpers.Commum.numeroParaString(produtoSelecionado.valorTotal) + '%0A%0A'
+                                }).join('') +                    
                     '*Nome:* ' + this._carrinhoCompras.pedido.nome + '%0A' +
                     '*Endereço de entrega:* ' + this._carrinhoCompras.pedido.endereco + '%0A%0A' +
-                    '*Valor pedido* R$ ' + this._carrinhoCompras.pedido.valorPedido + '%0A' +
-                    '*Taxa de entrega* R$ ' + this._carrinhoCompras.pedido.taxaServico + '%0A' +
-                    '*Total* R$ ' + this._carrinhoCompras.pedido.valorTotal + '%0A%0A' +
-                    '*Valor em dinheiro*: R$ ' + this._carrinhoCompras.pedido.valorEmDinheiro + '%0A' +
-                    '*Valor do troco:* R$ aqui vai o troco %0A%0A' +
-                    '*Pagamento em Cartão:* ' + this._carrinhoCompras.pedido.tipoCartao;
+                    '*Valor pedido* R$ ' + Helpers.Commum.numeroParaString(this._carrinhoCompras.pedido.valorPedido) + '%0A' +
+                    '*Taxa de entrega* R$ ' + Helpers.Commum.numeroParaString(this._carrinhoCompras.pedido.taxaServico) + '%0A' +
+                    '*Total* R$ ' + Helpers.Commum.numeroParaString(this._carrinhoCompras.pedido.valorTotal) + '%0A%0A' +
+                    tipoPagamento;
         }
     }
 }

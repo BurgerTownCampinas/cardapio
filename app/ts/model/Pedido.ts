@@ -4,11 +4,12 @@ namespace Model {
         private _produtosSelecionados: ProdutoSelecionado[];
         private _nome: string;
         private _endereco: string;
-        private _tipoPagamento: number;
         private _valorEmDinheiro: number;
-        private _tipoCartao: number;
+        private _valorDoTroco: number;
         private _valorPedido: number;
         private _valorTotal: number;
+        private _tipoPagamento = 0;
+        private _tipoCartao = 0;
         private _taxaServico = 3;
 
         constructor() {
@@ -75,11 +76,25 @@ namespace Model {
             return this._taxaServico;
         }
 
+        set valorDoTroco(valor: number) {
+            this._valorDoTroco = valor;
+        }
+
+        get valorDoTroco(): number {
+            return this._valorDoTroco;
+        }
+
         adicionarProdutos(produtoSelecionado: ProdutoSelecionado): void {
             if (this._produtosSelecionados.some(p => p === produtoSelecionado))
                 return;
 
             this._produtosSelecionados.push(produtoSelecionado);
+            produtoSelecionado.id = this._produtosSelecionados.length - 1;
+        }
+
+        removerProdutos(id: number): void {
+            this._produtosSelecionados.splice(id, 1);
+            this._produtosSelecionados.map((produto, index) => produto.id = index);
         }
 
         obterProdutos(): ProdutoSelecionado[] {
