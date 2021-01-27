@@ -8,12 +8,10 @@ var Pedido;
                     <div class="d-flex">
                         <p class="flex-fill width-30">Troco para: R$</p>
                         <input id="dinheiro" 
-                            type="text" 
+                            type="number" 
                             class="form-control 
                             flex-fill width-70"
-                            placeholder="Ex: 50,00" 
-                            onkeypress="$(this).mask('#.###,##', {reverse: true})"
-                        />
+                            placeholder="Ex: 50,00"/>
                     </div>
                 </div>
                 <span id="valida-dinheiro" class="text-danger"></span>

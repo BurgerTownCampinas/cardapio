@@ -22,6 +22,7 @@ var Pedido;
             this._logica.obterTipoCartao();
             this._logica.calcularTroco();
             this._logica.enviarMensagem();
+            this._logica.mascaraCampoTroco();
         }
         _view() {
             return `<div class="modal-dialog">
@@ -33,7 +34,7 @@ var Pedido;
                                 <div class="modal-body form-control">
                                     ${this._carrinhoCompras.pedido.obterProdutos().map((produtoSelecionado, index) => this._item.view(produtoSelecionado, index)).join('')}                       
                                     <div>
-                                        <label>Nome completo</label>
+                                        <label>Nome</label>
                                         <input id="nome" 
                                             type="text" 
                                             class="form-control" />

@@ -79,6 +79,9 @@ input, textarea {
     width: 67%;
     padding-left: 3%;
 }
+.width-100{
+    width: 100%;
+}
 
 .width-80{
     width: 80%;

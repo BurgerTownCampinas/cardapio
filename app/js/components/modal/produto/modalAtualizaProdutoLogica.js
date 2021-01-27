@@ -9,6 +9,7 @@ var Modal;
                 this._valorTotalTemp = _produtoSelecionado.valorTotal;
                 this._quantidadeTemp = _produtoSelecionado.quantidade;
                 this._valorTotalAdicionalTemp = _produtoSelecionado.valorTotalAdicional;
+                this._observacoesTemp = _produtoSelecionado.observacoes;
                 this._adicionaisTemp = [].concat(_produtoSelecionado.obterAdicionais());
             }
             incrementarQuantidade() {
@@ -97,8 +98,8 @@ var Modal;
                     ${Helpers.Commum.numeroParaString(this.somarTotalProdutos())}
                 `;
             }
-            _adicionarAdicionais(id) {
-                this._adicionaisTemp.push({ id: id });
+            _adicionarAdicionais(obj) {
+                this._adicionaisTemp.push({ id: obj.id, nome: obj.nome });
             }
             _removerAdicionais(id) {
                 let indice;

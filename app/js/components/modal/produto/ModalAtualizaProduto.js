@@ -40,9 +40,8 @@ var Modal;
                                 <!-- Modal footer -->
                                 ${this._modalFooter.view(this._logica, 'incremento-atualiza', 'decremento-atualiza', 'quantidade-atualiza', 'Atualizar', 'total-atualiza', this._produtoSelecionado.quantidade)}
                                 <button id="excluir"
-                                    style="width:100%" 
                                     type="button" 
-                                    class="btn btn-secondary 
+                                    class="btn btn-secondary width-100
                                     padding-customizado-modal-produto 
                                     text-color-branco-customizado"
                                     data-dismiss="modal">Excluir</button>

@@ -5,7 +5,7 @@ namespace Modal.Produto{
         private _valorTotalTemp: number;
         private _valorTotalAdicionalTemp: number;
         private _observacoesTemp: string;
-        private _adicionaisTemp: {id: number}[];
+        private _adicionaisTemp: {id: number, nome: string}[];
 
         constructor(private _produtoSelecionado: Model.ProdutoSelecionado) {
             this._carrinhoCompras = new CarrinhoCompras.CarrinhoCompras();
@@ -13,6 +13,7 @@ namespace Modal.Produto{
             this._valorTotalTemp = _produtoSelecionado.valorTotal;
             this._quantidadeTemp = _produtoSelecionado.quantidade;
             this._valorTotalAdicionalTemp = _produtoSelecionado.valorTotalAdicional;
+            this._observacoesTemp = _produtoSelecionado.observacoes;
             this._adicionaisTemp = [].concat(_produtoSelecionado.obterAdicionais());
         }
 
@@ -65,8 +66,7 @@ namespace Modal.Produto{
             elemento
                 .addEventListener('blur', (event) => {
                     let input = <HTMLInputElement>event.target;
-                    this._observacoesTemp = input.value;
-                   
+                    this._observacoesTemp = input.value;                   
                 });
         }
         
@@ -124,8 +124,8 @@ namespace Modal.Produto{
                 `;
         }
 
-        private _adicionarAdicionais(id: any): void{
-            this._adicionaisTemp.push({id: id});
+        private _adicionarAdicionais(obj: any): void{
+            this._adicionaisTemp.push({id: obj.id, nome: obj.nome });
         }
 
         private _removerAdicionais(id: number):void {
