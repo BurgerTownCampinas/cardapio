@@ -47,10 +47,7 @@ var Pedido;
             let cartoes = document
                 .querySelectorAll('input[name="tipo-pagamento-cartao"]');
             cartoes.forEach((cartao) => cartao
-                .addEventListener('click', (event) => {
-                this._carrinhoCompras.pedido.tipoCartao = parseInt(this._obterValor(event));
-                console.log(this._carrinhoCompras.pedido.tipoCartao);
-            }));
+                .addEventListener('click', (event) => this._carrinhoCompras.pedido.tipoCartao = parseInt(this._obterValor(event))));
         }
         somarTotalPedido() {
             return this._pedido.valorPedido =

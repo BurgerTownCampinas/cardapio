@@ -5,7 +5,7 @@ var Mensagem;
             this._carrinhoCompras = Model.CarrinhoCompras.getInstance();
         }
         enviarMensagem() {
-            let fone = '+5519991755210';
+            let fone = '+5519989227984';
             let link = `https://wa.me/${fone}?&text=${this._template()}`;
             window.open(link, '_blank');
             location.reload();

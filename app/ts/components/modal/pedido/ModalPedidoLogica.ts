@@ -66,10 +66,8 @@ namespace Pedido {
 
             cartoes.forEach((cartao) =>
                 cartao
-                    .addEventListener('click', (event: Event) => {
-                        this._carrinhoCompras.pedido.tipoCartao = parseInt(this._obterValor(event))
-                        console.log(this._carrinhoCompras.pedido.tipoCartao);
-                    })
+                    .addEventListener('click', (event: Event) => 
+                        this._carrinhoCompras.pedido.tipoCartao = parseInt(this._obterValor(event)))
             );
         }
 
