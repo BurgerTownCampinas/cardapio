@@ -118,7 +118,7 @@ var Dados;
             id: 14,
             nome: 'Calabresa',
             imgPath: '',
-            descricao: 'Caçabresa',
+            descricao: 'Calabresa',
             valor: 3.00,
             idCategoria: 5
         },
